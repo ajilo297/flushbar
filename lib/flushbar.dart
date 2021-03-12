@@ -413,6 +413,9 @@ class _FlushbarState<K extends Object> extends State<Flushbar>
           future: _boxHeightCompleter.future,
           builder: (context, AsyncSnapshot<Size> snapshot) {
             if (snapshot.hasData) {
+              if(widget.barBlur == 0) { // fixes Expected value of SkDeletable, but got one of type Null
+                return _emptyWidget;
+              }
               return ClipRRect(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 child: BackdropFilter(
